@@ -16,7 +16,6 @@ public class Polynomial {
 	public Polynomial add(Polynomial p) {
 		Polynomial ans;
 		int l_old = this.coef.length, l_add = p.coef.length;
-		double[] c;
 		if (l_old >= l_add) {
 			ans = new Polynomial(this.coef);
 			for (int i = 0; i < l_add; i++) {
