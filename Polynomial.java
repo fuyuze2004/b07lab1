@@ -1,29 +1,40 @@
 public class Polynomial {
-	double[] coef = new double[10];
+	double[] coef;
 	
 	public Polynomial() {
+		this.coef = new double[1];
 	}
 	
 	public Polynomial(double arr[]) {
 		int l = arr.length;
+		this.coef = new double[l];
 		for (int i = 0; i < l; i++) {
 			this.coef[i] = arr[i];
 		}
 	}
 	
 	public Polynomial add(Polynomial p) {
-		double[] c = new double[10];
 		Polynomial ans;
-		for (int i = 0; i < 10; i++) {
-			c[i] = this.coef[i] + p.coef[i];
+		int l_old = this.coef.length, l_add = p.coef.length;
+		double[] c;
+		if (l_old >= l_add) {
+			ans = new Polynomial(this.coef);
+			for (int i = 0; i < l_add; i++) {
+				ans.coef[i] += p.coef[i];
+			}
+		} else {
+			ans = new Polynomial(p.coef);
+			for (int i = 0; i < l_old; i++) {
+				ans.coef[i] += this.coef[i];
+			}
 		}
-		ans = new Polynomial(c);
+		
 		return ans;
 	}
 	
 	public double evaluate(double x) {
 		double sum = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < this.coef.length; i++) {
 			sum += this.coef[i] * Math.pow(x, i);
 		}
 		return sum;
